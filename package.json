@@ -1,18 +1,20 @@
 {
 	"name": "react-hook-system",
-	"version": "1.0.0",
-	"description": "This is a lightweight flux system that is relatively flexible in how you use it.",
+	"version": "0.0.1",
+	"description": "This is a lightweight flux like system that keeps data flow through the UI using flux, while allowing direct interaction as needed.  It also provides a template that simplifies unit testing by create unit structures that use injection and provides a framework that encourages small units",
 	"author": "Steve Cook",
 	"license": "MIT",
-	"repository": "sacridias/react-hooks-system",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/GriffinCooksApps/react-hooks-system.git"
+	},
 	"main": "dist/index.js",
 	"engines": {
 		"node": ">=8",
 		"npm": ">=5"
 	},
 	"scripts": {
-		"build": "rollup -c",
-		"start": "rollup -c -w"
+		"test": "jest . --watchAll"
 	},
 	"dependencies": {},
 	"peerDependencies": {
@@ -23,14 +25,10 @@
 		"eslint": "^7.10.0",
 		"@react-native-community/eslint-config": "^2.0.0",
 		"@types/react": "^16.3.13",
-		"@types/react-dom": "^16.0.5",
 		"babel-core": "^6.26.3",
 		"babel-runtime": "^6.26.0",
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0",
-		"rollup": "^1.29.0",
-		"rollup-plugin-sass": "^1.2.2",
-		"rollup-plugin-typescript2": "^0.25.3",
 		"typescript": "^2.8.3"
 	},
 	"files": [
@@ -42,6 +40,13 @@
 		"npm",
 		"flux",
 		"redux replacement",
-		"react hooks"
-	]
+		"react hooks",
+		"react-native",
+		"data management"
+	],
+	"bugs": {
+		"url": "https://github.com/GriffinCooksApps/react-hooks-system/issues"
+	},
+	"homepage": "https://github.com/GriffinCooksApps/react-hooks-system#readme"
+
 }

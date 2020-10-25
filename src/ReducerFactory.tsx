@@ -1,4 +1,5 @@
-
+import { deepCopy } from 'lodash';
+import { systemDefaultErrorReducer } from './defaults/ErrorReducer';
 
 export interface iState {
 	_stateindex: number;
@@ -7,63 +8,85 @@ export interface iState {
 
 type tState = iState | null;
 
-export interface iPayload{
-	[key: string | number]: iReducer | iEReducer;
-}
-
-export type tPayload = Error | iPayload | [iPayload] | [[string|number, any]];
-
 export interface iReducer {
-	(state: iState, payload: any): iState;
+	(state: iState, payload?: any): iState | null | void | Error;
 }
+
+export interface iDefaultReducerKeyed {
+	(state: iState, key: string | number, payload?: any): iState | null | void;
+}
+export interface iDefaultReducerUnkeyed {
+	(state: iState, payload?: any): iState | null | void;
+}
+
+export type tDefaultReducer = iDefaultReducerKeyed | iDefaultReducerUnkeyed;
+
+
 
 export interface iEReducer {
-	(state: iState, error: Error): iState;
+	(state: iState, error: Error): iState | null | void;
 }
 
-export interface iMainReducer{
-	(state: tState, payload: Error | iPayload): iState;
-}
-
-type tReducerArray = [[string | number, iReducer]];
-
-interface iReducerObj {
-	[key: string]: iReducer;
-}
-
-type tReducerList = tReducerArray | iReducerObj;
-
-
+type tReducerList = [[string | number, iReducer]] | { [key: string]: iReducer; } | Map<string | number, iReducer>;
 
 interface iReducerFactory {
 	(reducerList: tReducerList | null,
-		defaultReducer: iReducer | null,
-		errorReducer: iEReducer | null,
+		errorReducer?: iEReducer,
+		defaultReducer?: tDefaultReducer,
 	): iReducer;
 }
 
+type tReducerEvent = [string | number, any] | Error;
+export type tEventList = tReducerEvent[];
 
 
-export const ReducerFactory: iReducerFactory = (reducerList, defaultReducer, errorReducer) => {
+export const ReducerFactory: iReducerFactory = (reducerList, errorReducer = systemDefaultErrorReducer, defaultReducer = systemDefaultReducer) => {
 	if (reducerList === null && defaultReducer === null) throw new Error('either reducerlist must be defined or the default reducer (or both)');
-	const funMap = new Map();
+	let fMap = new Map<string | number, iReducer>();
 	if (typeof reducerList === 'object' && reducerList !== null) {
 		if (Array.isArray(reducerList)) {
 			reducerList.forEach(value => {
-				funMap.set(value[0], value[1]);
+				fMap.set(value[0], value[1]);
 			});
-		} else {
-			Object.keys(reducerList).forEach(key => {
-				funMap.set(key, reducerList[key]);
-			})
+		} else if (reducerList instanceof Map) {
+			fMap = reducerList;
 		}
+	} else {
+		Object.keys(reducerList).forEach(key => {
+			fMap.set(key, reducerList[key]);
+		})
 	}
+	const funMap = fMap;
 
-	return (state, payloads:iPayloadStack) => {
 
+	return (state, events: tEventList) => {
 		try {
+			let newState = Object.assign({}, state);
+			let changed = false;
+			events.forEach(event => {
+				let results;
+				if (event instanceof Error) {
+					results = errorReducer(newState, event);
+				} else if (Array.isArray(event)) {
+					let [key, payload] = event;
+					if (!funMap.get(key)) results = defaultReducer(newState, key, payload);
+				} else {
+					results = defaultReducer(state, event);
+				}
+				if (results instanceof Error) {
+					results = errorReducer(newState, results);
+				}
+				if (results === null) {
+				}
+				if (results) {
+					changed = true;
+					newState = results;
+				}
+			});
+			return newState;
+		} catch (e) {
 
-			if()
+		}
 
 		const [key, payload] = payload;
 		//

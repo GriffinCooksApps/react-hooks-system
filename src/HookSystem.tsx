@@ -1,30 +1,16 @@
-import * as React from 'react'
+import * as React from 'react';
 import { initialization } from '../utility/initialization';
 import { HookContext } from './Context';
 import { iState, iReducer, ReducerFactory } from './ReducerFactory';
 
 
-interface iDriver {
-	state: iState;
-	dispatcher: tDispatcher;
-}
 
 
 
 
-interface iInitializer {
-	async(): Promise<iState>;
-}
 
-interface HookFluxSystemProps {
-	loadingScreen?: React.ReactChildren | null;
-	children: React.ReactChildren;
-	reducerList?: [any, iReducer][] | null;
-	initializer?: iInitializer | null;
-	ready?: boolean;
-	defaultReducer?: iReducer | null;
-	errorReducer?: iEReducer | null;
-}
+
+
 
 export const HookFluxSystem = ({ loadingScreen = null, children, reducerList = null, initializer = null, ready = true, defaultReducer = null, errorReducer = null }: HookFluxSystemProps) => {
 

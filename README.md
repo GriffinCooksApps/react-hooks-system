@@ -2,7 +2,7 @@
 
 > Small light weight flux system using react hooks
 
-[![NPM](https://img.shields.io/npm/v/react-hooks-system.svg)](https://www.npmjs.com/package/react-hooks-system) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-hooks-system.svg)](https://www.npmjs.com/package/react-hooks-system) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-typescript-brightgreen.svg)](https://typescript.com)
 
 ## Install
 
@@ -13,18 +13,20 @@ npm install --save react-hooks-system
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React from 'react';
+import HookFluxSystem from 'react-hook-system';
 
-import MyComponent from 'react-hooks-system'
-import 'react-hooks-system/dist/index.css'
+HookFluxSystem(reducerMap, );
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+export const App = () =>{
+    return ( 
+    <HookFluxSystem.Provider onReady={ready}>
+        <RemainingApplication/>
+    </HookFluxSystem.Provider>);
+
 }
+
+
+
+
 ```
-
-## License
-
-MIT © [sacridias](https://github.com/sacridias)
