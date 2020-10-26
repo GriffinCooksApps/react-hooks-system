@@ -1,11 +1,11 @@
 {
 	"root": true,
 	"extends": "@react-native-community",
+	"ignorePatterns": ["coverage/**"],
 	"rules": {
-	  "radix": "off",
-	  "no-alert": "off",
-	  "no-useless-escape": "off",
-	  "prettier/prettier": 0
+		"radix": "off",
+		"no-alert": "off",
+		"no-useless-escape": "off",
 	}
-  }
-  // extends: 'react-native-typescript',
+}
+// extends: 'react-native-typescript',
