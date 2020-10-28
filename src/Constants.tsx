@@ -1,20 +1,20 @@
-import * as React from 'react';
-import {iHookContext} from "./ReactHooksSystems";
+/** @format */
 
-const hookSystemManager = new HookSystemManager();
+export enum alertLevels {
+	log,
+	notice,
+	warning,
+	error,
+	state,
+	system,
+	critical,
+}
 
-export const HookContext = React.createContext<iHookContext>({
-    state: {},
-    dispatch: hookSystemManager,
-});
-
-export enum HookSystemStatus {
-    dormant,
-    loading,
-    loaded,
-    ready,
-    inError,
-    recovered,
-    failed,
-
+export enum hookSystemStatuses {
+	dormant,
+	loading,
+	ready,
+	inError,
+	recovered,
+	failed,
 }

@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "sourceMap": true,
+    "allowJs": true,
+    "declaration": true,
+    "declarationDir": "types",
+    "outDir": "lib",
+    "reactNamespace": "ReactHookSystem",
+    "baseUrl": ".",
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "esModuleInterop": true,
+    "importsNotUsedAsValues": "error",
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es6",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src"
+    ],
+    "exclude": [
+      "./node_modules",
+      "**/__tests__/*"
+    ],
+    "include": [
+      "./lib"
+    ]
+  }
+}

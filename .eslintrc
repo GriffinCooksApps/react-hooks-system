@@ -1,11 +1,24 @@
 {
-	"root": true,
-	"extends": "@react-native-community",
-	"ignorePatterns": ["coverage/**"],
-	"rules": {
-		"radix": "off",
-		"no-alert": "off",
-		"no-useless-escape": "off",
-	}
+  "root": true,
+  "extends": "@react-native-community",
+  "ignorePatterns": [
+    "coverage/**"
+  ],
+  "rules": {
+    "radix": "off",
+    "no-alert": "off",
+    "no-useless-escape": "off",
+    "camelcase": "warn",
+    "comma-dangle": "warn",
+    "max-depth": [
+       "error",
+      4
+    ],
+    "vars-on-top": "error",
+    "max-len": [
+      "error",
+      400
+    ]
+  }
 }
 // extends: 'react-native-typescript',

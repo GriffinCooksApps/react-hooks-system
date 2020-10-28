@@ -2,7 +2,6 @@ import * as React from 'react';
 import { reducerEvent } from '../../domains/reducerEvents';
 import { getServiceUpdates } from '../DarkSide/services';
 import { initialization } from '../../domains/initialization';
-import { Istate } from '../../domains/index';
 import { reducer } from '../../domains/Reducer';
 import { Styler } from '../../../styles/Styler';
 import * as Font from 'expo-font';
