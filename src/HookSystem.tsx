@@ -6,7 +6,7 @@ import { iState, iReducer, ReducerFactory } from './ReducerFactory';
 
 
 
-
+//TODO Review for additional elements missing.
 
 
 
